@@ -1,0 +1,10 @@
+# Face verification (liveness + 1:1 match)
+#
+# Separate from requirements-ocr.txt on purpose: these two modules are large,
+# independent, and a team member working on one should not have to install the
+# other. The app runs with neither, with either, or with both.
+
+insightface>=0.7
+onnxruntime>=1.17
+opencv-python>=4.8
+numpy>=2.0

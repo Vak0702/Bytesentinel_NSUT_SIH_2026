@@ -1,0 +1,41 @@
+# Paths are relative to the repository root. The project source lives under
+# src/, so every project path below is prefixed accordingly.
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+src/backend/.env
+src/backend/*.db
+src/backend/instance/
+src/backend/static/
+
+# Node
+node_modules/
+src/frontend/landing/.next/
+src/frontend/landing/out/
+src/frontend/console/dist/
+src/frontend/landing/.env.local
+src/frontend/console/.env
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Uploaded documents and live face captures (real traveller data)
+src/backend/uploads/
+
+# OCR pipeline debug output
+src/backend/pipelines/passport/debug_*.png
+src/backend/pipelines/passport/mrz_variants/
+
+# Model caches (downloaded on first run)
+.paddlex/
+.insightface/
+
+# NOTE: assets-screenshots/ is deliberately NOT ignored. Those images are
+# documentation -- they are what the screenshots README renders, and nothing
+# regenerates them. Ignoring them means broken image links on GitHub.

@@ -1,0 +1,82 @@
+# ==========================================================================
+# Dastavez — all Python dependencies
+#
+#   pip install -r requirements.txt
+#
+# Python 3.12 recommended (3.10+ required).
+#
+# --------------------------------------------------------------------------
+# BEFORE YOU RUN THIS: two libraries pip cannot install
+# --------------------------------------------------------------------------
+# Both are native (C/C++) libraries that Python packages below link against at
+# runtime. Missing either produces an ImportError that LOOKS like a missing pip
+# package but is not -- reinstalling the Python package will not help.
+#
+#   1. Microsoft Visual C++ 2015-2022 Redistributable (x64)
+#      Needed by: onnxruntime (which insightface and mrzscanner both sit on)
+#      Symptom:   ImportError: DLL load failed while importing
+#                 onnxruntime_pybind11_state
+#
+#   2. libjpeg-turbo  (Windows: VC 64-bit installer, default C:\libjpeg-turbo64)
+#      Needed by: PyTurboJPEG, pulled in transitively by mrzscanner
+#      Symptom:   RuntimeError: Unable to locate turbojpeg library automatically
+#
+# --------------------------------------------------------------------------
+# First run downloads models (~500 MB total, cached afterwards)
+# --------------------------------------------------------------------------
+#   PaddleOCR   -> ~/.paddlex        detection + recognition models
+#   InsightFace -> ~/.insightface    buffalo_l face model
+#   mrzscanner  -> site-packages     MRZ detector + a CJK font
+#
+# ==========================================================================
+
+
+# --- Core API -------------------------------------------------------------
+# Enough on their own to start the server, sign in, browse cases and serve the
+# console. Everything below this block is a verification pipeline.
+
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Flask-Cors==4.0.1
+SQLAlchemy==2.0.32
+
+# MySQL driver. Not needed for the SQLite fallback, but harmless to install and
+# it keeps DATABASE_URL switchable without a reinstall.
+PyMySQL==1.1.1
+
+# Password hashing. bcrypt is deliberately slow (cost factor 12 -> ~250 ms per
+# verification), which is what makes a stolen hash dump impractical to attack.
+bcrypt==4.2.0
+
+python-dotenv==1.0.1
+cryptography==43.0.1
+
+
+# --- Passport MRZ + Aadhaar OCR -------------------------------------------
+# Large download. Without these, uploads return an explicit 503 and
+# /api/health reports passportOcr: false / aadhaarOcr: false.
+
+paddlepaddle>=3.2,<3.3
+paddleocr>=3.2,<3.3
+
+# MRZ region detection, used by pipelines/passport/mrz_pipeline.py.
+#
+# NOTE: the distribution name and the import name differ. You install
+# `mrzscanner-docsaid` but you `import mrzscanner`. A package literally named
+# `mrzscanner` does not exist on PyPI -- do not "correct" this line.
+mrzscanner-docsaid>=1.0
+
+
+# --- Liveness + 1:1 face matching -----------------------------------------
+# Without these, liveness and face-match endpoints return 503 and
+# /api/health reports faceMatch: false.
+
+insightface>=0.7
+onnxruntime>=1.17
+
+
+# --- Shared by the pipelines ----------------------------------------------
+
+opencv-python>=4.8
+numpy>=2.0
+Pillow>=10.0

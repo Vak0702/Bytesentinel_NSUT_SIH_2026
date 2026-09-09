@@ -1,0 +1,18 @@
+# Passport MRZ extraction requirements
+#
+# This file is for:
+#   1. MRZ detection / cropping
+#   2. PaddleOCR recognition
+#   3. Deterministic MRZ parsing
+#
+# Python: 3.10+ recommended
+
+paddlepaddle>=3.2,<3.3
+paddleocr>=3.2,<3.3
+
+opencv-python>=4.8
+numpy>=2.0
+Pillow>=10.0
+
+# MRZ region detection (used by pipelines/passport/mrz_pipeline.py).
+mrzscanner-docsaid>=1.0
