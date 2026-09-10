@@ -8,6 +8,20 @@ Team **BYTESENTINEL**
 
 ---
 
+## About Team
+
+**BYTESENTINEL** — Smart India Hackathon 2026
+
+| Member | Role |
+|---|---|
+| Janmajay Sharma | Backend & API — Face verification module, Passport ocr module|
+| Anushka | Presentation drafting and research work |
+| Prince Vishwakarma | Database handler, Mock database |
+| Virat Kataria | Passport MRZ pipeline — detection, OCR, ICAO 9303 validation, System integration, documentation|
+| Khushboo Kanojia | Auth- login console , Aadhar ocr pipeline |
+| Tanmay Mudgal |Officer console — React, Vite, screening UI Landing page & authentication flow |
+
+
 ## 1. What problem are we solving?
 
 An immigration officer at a border check post has under a minute to decide
