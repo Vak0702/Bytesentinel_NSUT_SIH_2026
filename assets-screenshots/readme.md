@@ -80,7 +80,7 @@ Captured through the liveness check — head left, head right, centre. The
 verified centre frame becomes the case's reference for every subsequent
 document comparison.
 
-![Live face](05-input_04%20live%20face.png)
+![Live face](05-input_04_live_face.png)
 
 ---
 
